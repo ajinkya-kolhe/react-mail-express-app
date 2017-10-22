@@ -1,8 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-require('./services/passport');
 require('./models/User');
+require('./services/passport');
 const keys = require('./config/keys');
 
 // Add below 2 lines to fix the deprecation errors related to mongoose.
