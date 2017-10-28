@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 class Header extends React.Component {
@@ -24,9 +25,12 @@ class Header extends React.Component {
     return (
       <nav>
         <div className="nav-wrapper">
-          <a className="left brand-logo">
+          <Link
+            to={this.props.auth ? '/surveys' : '/'}
+            className="left brand-logo"
+          >
             Mail Express
-          </a>
+          </Link>
           <ul className="right">
             {this.renderContent()}
           </ul>
