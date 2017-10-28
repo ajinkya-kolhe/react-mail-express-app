@@ -7,11 +7,15 @@ module.exports = (app) => {
   }));
 
   //Redirect URI
-  app.get('/auth/google/callback', passport.authenticate('google'));
+  app.get(
+    '/auth/google/callback',
+    passport.authenticate('google'),
+    (request, response) => response.redirect('/surveys')
+  );
 
   app.get('/api/logout', (request, response) => {
     request.logout();
-    response.send(request.user);
+    response.redirect('/');
   });
 
   app.get('/api/current_user', (request, response) => {
