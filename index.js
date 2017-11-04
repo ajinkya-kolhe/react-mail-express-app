@@ -28,9 +28,23 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Routes handlers
+// Route handlers
 require('./routes/authRoutes')(app);
 require('./routes/billing')(app);
+
+// Routing in production.
+if (process.env.NODE_ENV === 'production') {
+  // Express will serve Production Assets like
+  // main.js or main.css
+  app.use(express.static('client/build'));
+
+  // Express will serve up the index.html file
+  // if it does not recognise the Route.
+  const path = require('path');
+  app.get('*', (request, response) => {
+    response.sendFile(path.resolve(_dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
