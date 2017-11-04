@@ -11,7 +11,10 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "client": "( cd ./client && yarn start )",
-    "dev": "concurrently \"yarn server\" \"yarn client\" "
+    "dev": "concurrently \"yarn server\" \"yarn client\"",
+    "heroku-postbuild": "YARN_PRODUCTION=false yarn client-install && yarn client-build",
+    "client-install": "(cd ./client && yarn install)",
+    "client-build": "(cd ./client && yarn build)",
   },
   "author": "",
   "license": "ISC",
