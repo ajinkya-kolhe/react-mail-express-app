@@ -4,8 +4,13 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 
+// Load the models.
 require('./models/User');
+require('./models/Survey');
+
+// Load the passport file.
 require('./services/passport');
+
 const keys = require('./config/keys');
 
 // Add below 2 lines to fix the deprecation errors related to mongoose.
